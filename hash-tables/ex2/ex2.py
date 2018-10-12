@@ -1,32 +1,60 @@
-def reconstruct_trip(tickets):
-  pass 
+
+
 
 if __name__ == '__main__':
   # You can write code here to test your implementation using the Python repl
   pass
 
 def reconstruct_trip(flights):
-    """
-    Find departure and arrival airport from chain of flights.
+  dictionary = {}
 
-    Effectively the opposite of the itertools recipe pairwise:
+  for flight in flights:
+    dictionary[flight[0]] = flight[1]
+  present_flight = dictionary[None]
+  trip = []
 
-    >>> get_departure_arrival([(s0, s1), (s1, s2), (s2, s3)])
-    (s0, s3)
+  while present_flight != None:
+    trip.append(present_flight)
+    if present_flight in dictionary:
+      present_flight = dictionary[present_flight]
+    else:
+      return []
 
-    Pairs do not have to be in order:
+  ##print(trip)
+  return trip
 
-    >>> get_departure_arrival([(s0, s1), (s2, s3), (s1, s2)])
-    (s0, s3)
-    """
-    sources, destinations = map(set, zip(*flights))
+    
 
-    depart = (sources - destinations).pop()
-    arriv = (destinations - sources).pop()
 
-    #return depart, arriv
-    flight_dict = dict(flights)
-    while depart != arriv:
-        yield depart
-        depart = flight_dict[depart]
-    return depart
+
+short_set = [(None, 'PDX'),('PDX', 'DCA'),('DCA', None)]
+
+long_set = [
+      ('PIT', 'ORD'),
+      ('XNA', 'CID'),
+      ('SFO', 'BHM'),
+      ('FLG', 'XNA'),
+      (None, 'LAX'), 
+      ('LAX', 'SFO'),
+      ('CID', 'SLC'),
+      ('ORD', None),
+      ('SLC', 'PIT'),
+      ('BHM', 'FLG'),
+    ]
+
+incorrect_set = [
+      ('LHD', 'DAB'),
+      (None, 'HVN'),
+      ('MSO', 'SFO'),
+      ('RDU', 'ABQ'),
+      ('ACY', None),
+    ]
+
+#reconstruct_trip(short_set)
+#['PDX', 'DCA']
+
+#reconstruct_trip(long_set)
+#['LAX', 'SFO', 'BHM', 'FLG', 'XNA', 'CID', 'SLC', 'PIT', 'ORD']
+
+#reconstruct_trip(incorrect_set)
+#[]
