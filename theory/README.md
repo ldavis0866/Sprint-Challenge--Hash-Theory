@@ -10,6 +10,7 @@ both `antelope` and `antelopes`.)
     antelope rocks out
     
     antelopes rock out
+    
 
 * Regex that matches either of:
 
