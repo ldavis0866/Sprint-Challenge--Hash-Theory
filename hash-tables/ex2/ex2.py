@@ -6,10 +6,9 @@ if __name__ == '__main__':
   pass
 
 def reconstruct_trip(flights):
-  dictionary = {}
 
-  for flight in flights:
-    dictionary[flight[0]] = flight[1]
+  dictionary = dict(flights)
+  
   present_flight = dictionary[None]
   trip = []
 
@@ -58,3 +57,7 @@ incorrect_set = [
 
 #reconstruct_trip(incorrect_set)
 #[]
+
+#dictionary = {}
+# for flight in flights:
+  #   dictionary[flight[0]] = flight[1]
